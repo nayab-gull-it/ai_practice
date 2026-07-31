@@ -95,6 +95,22 @@ st.markdown(
         background: linear-gradient(145deg, #22243a, #1a1c2e);
     }
 
+    /* Primary buttons (Start Game / Play Again) get a bold accent look */
+    div.stButton > button[kind="primary"] {
+        background: linear-gradient(90deg, #ff5e78, #ff8b4d) !important;
+        border: none !important;
+        color: #ffffff !important;
+        height: 56px;
+        font-size: 1.15rem !important;
+        box-shadow: 0 6px 16px rgba(255,94,120,0.35);
+    }
+
+    div.stButton > button[kind="primary"]:hover {
+        background: linear-gradient(90deg, #ff7590, #ffa066) !important;
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 8px 20px rgba(255,94,120,0.5);
+    }
+
     /* Score cards */
     .score-box {
         background: linear-gradient(145deg, #1c1f34, #14162a);
@@ -140,14 +156,13 @@ st.markdown(
         to   { box-shadow: 0 0 25px rgba(255,215,0,0.9), 0 0 45px rgba(255,215,0,0.6); }
     }
 
-    /* Name entry card */
-    .entry-card {
+    /* Native bordered container styled as a dark card (used for name entry) */
+    div[data-testid="stVerticalBlockBorderWrapper"] {
         background: linear-gradient(145deg, #1c1f34, #14162a);
-        border-radius: 20px;
-        padding: 30px 26px;
-        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 20px !important;
+        border: 1px solid rgba(255,255,255,0.10) !important;
         box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        margin-top: 20px;
+        padding: 6px;
     }
 
     .stTextInput input {
@@ -178,6 +193,32 @@ st.markdown(
         background: linear-gradient(180deg, #14162a, #0d0e17);
     }
 
+    /* Radio buttons (difficulty selector) - make clearly visible */
+    div[data-testid="stSidebar"] .stRadio label,
+    div[data-testid="stSidebar"] .stRadio p {
+        color: #ffffff !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+    }
+
+    div[data-testid="stSidebar"] .stRadio > div {
+        background: #1c1f34;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    div[data-testid="stSidebar"] .stRadio [role="radiogroup"] label {
+        color: #ffffff !important;
+    }
+
+    div[data-testid="stSidebar"] .stCaption, 
+    div[data-testid="stSidebar"] p,
+    div[data-testid="stSidebar"] span,
+    div[data-testid="stSidebar"] .stMarkdown {
+        color: #e6e6f0 !important;
+    }
+
     footer-note {
         text-align:center;
         color:#9a9cc0;
@@ -200,6 +241,7 @@ def init_state():
         "game_over": False,
         "player_name": "",
         "name_confirmed": False,
+        "difficulty": "Medium",
         "scores": {"player": 0, "Computer": 0, "Draw": 0},
     }
     for key, value in defaults.items():
@@ -240,12 +282,88 @@ def record_result(winner):
         st.session_state.scores["Computer"] += 1
 
 
+def minimax(board, depth, is_maximizing):
+    """Minimax search. Computer (O) maximizes, Player (X) minimizes."""
+    winner, _ = check_winner(board)
+    if winner == "O":
+        return 10 - depth
+    if winner == "X":
+        return depth - 10
+    if winner == "Draw":
+        return 0
+
+    empty_cells = [i for i, v in enumerate(board) if v == ""]
+
+    if is_maximizing:
+        best_score = -float("inf")
+        for i in empty_cells:
+            board[i] = "O"
+            score = minimax(board, depth + 1, False)
+            board[i] = ""
+            best_score = max(best_score, score)
+        return best_score
+    else:
+        best_score = float("inf")
+        for i in empty_cells:
+            board[i] = "X"
+            score = minimax(board, depth + 1, True)
+            board[i] = ""
+            best_score = min(best_score, score)
+        return best_score
+
+
+def best_move_minimax(board):
+    """Find the optimal move for the computer using minimax."""
+    best_score = -float("inf")
+    move = None
+    for i in [i for i, v in enumerate(board) if v == ""]:
+        board[i] = "O"
+        score = minimax(board, 0, False)
+        board[i] = ""
+        if score > best_score:
+            best_score = score
+            move = i
+    return move
+
+
+def pick_computer_cell(empty_cells):
+    """Choose a cell index for the computer based on the selected difficulty."""
+    board = st.session_state.board
+    difficulty = st.session_state.difficulty
+
+    if difficulty == "Easy":
+        return random.choice(empty_cells)
+
+    if difficulty == "Medium":
+        # 1. Take a winning move if available
+        for i in empty_cells:
+            board[i] = "O"
+            if check_winner(board)[0] == "O":
+                board[i] = ""
+                return i
+            board[i] = ""
+
+        # 2. Block the player's winning move if they have one
+        for i in empty_cells:
+            board[i] = "X"
+            if check_winner(board)[0] == "X":
+                board[i] = ""
+                return i
+            board[i] = ""
+
+        # 3. Otherwise play randomly
+        return random.choice(empty_cells)
+
+    # Hard: unbeatable minimax
+    return best_move_minimax(board)
+
+
 def computer_move():
-    """Computer (O) plays a random available cell."""
+    """Computer (O) plays a move based on the chosen difficulty."""
     empty_cells = [i for i, v in enumerate(st.session_state.board) if v == ""]
     if not empty_cells:
         return
-    choice = random.choice(empty_cells)
+    choice = pick_computer_cell(empty_cells)
     st.session_state.board[choice] = "O"
     winner, combo = check_winner(st.session_state.board)
     if winner:
@@ -303,29 +421,28 @@ st.markdown(
 # Step 1: Ask player's name before game starts
 # ---------------------------------------------------------
 if not st.session_state.name_confirmed:
-    st.markdown("<div class='entry-card'>", unsafe_allow_html=True)
-    st.markdown("### 👋 What should we call you?")
-    name_input = st.text_input(
-        "Enter your name to start the game",
-        value=st.session_state.player_name,
-        placeholder="e.g. Nayab",
-    )
-    start_col1, start_col2 = st.columns([1, 1])
-    with start_col1:
-        start_clicked = st.button("🚀 Start Game", use_container_width=True, type="primary")
-    with start_col2:
-        st.caption("You'll play as ❌  •  Computer plays as ⭕")
+    with st.container(border=True):
+        st.markdown("### 👋 What should we call you?")
+        name_input = st.text_input(
+            "Enter your name to start the game",
+            value=st.session_state.player_name,
+            placeholder="e.g. Nayab",
+        )
+        start_col1, start_col2 = st.columns([1, 1])
+        with start_col1:
+            start_clicked = st.button("🚀 Start Game", use_container_width=True, type="primary")
+        with start_col2:
+            st.caption("You'll play as ❌  •  Computer plays as ⭕")
 
-    if start_clicked:
-        cleaned_name = name_input.strip()
-        if cleaned_name:
-            st.session_state.player_name = cleaned_name
-            st.session_state.name_confirmed = True
-            reset_board()
-            st.rerun()
-        else:
-            st.warning("Please enter your name to continue.")
-    st.markdown("</div>", unsafe_allow_html=True)
+        if start_clicked:
+            cleaned_name = name_input.strip()
+            if cleaned_name:
+                st.session_state.player_name = cleaned_name
+                st.session_state.name_confirmed = True
+                reset_board()
+                st.rerun()
+            else:
+                st.warning("Please enter your name to continue.")
     st.stop()
 
 player_name = st.session_state.player_name
@@ -338,6 +455,26 @@ with st.sidebar:
     st.write(f"Playing as: **{player_name}** (❌)")
 
     st.divider()
+    st.subheader("🎯 Difficulty")
+    difficulty_options = ["Easy", "Medium", "Hard"]
+    selected_difficulty = st.radio(
+        "Choose computer difficulty",
+        difficulty_options,
+        index=difficulty_options.index(st.session_state.difficulty),
+        label_visibility="collapsed",
+    )
+    if selected_difficulty != st.session_state.difficulty:
+        st.session_state.difficulty = selected_difficulty
+        reset_board()
+
+    if selected_difficulty == "Easy":
+        st.caption("🟢 Computer moves randomly.")
+    elif selected_difficulty == "Medium":
+        st.caption("🟡 Computer blocks you & takes wins, otherwise random.")
+    else:
+        st.caption("🔴 Computer plays perfectly — unbeatable!")
+
+    st.divider()
     if st.button("🔄 Reset Board", use_container_width=True):
         reset_board()
     if st.button("🗑️ Reset Scores", use_container_width=True):
@@ -348,6 +485,15 @@ with st.sidebar:
 
     st.divider()
     st.caption("Rules: Get 3 in a row (horizontal, vertical or diagonal) to win.")
+
+difficulty_colors = {"Easy": "#4de1c1", "Medium": "#ffb84d", "Hard": "#ff5e78"}
+st.markdown(
+    f"<p style='text-align:center; margin-bottom:0.6rem;'>"
+    f"<span style='background:rgba(255,255,255,0.06); border:1px solid {difficulty_colors[st.session_state.difficulty]}55; "
+    f"color:{difficulty_colors[st.session_state.difficulty]}; padding:5px 14px; border-radius:20px; "
+    f"font-size:0.85rem; font-weight:600;'>🎯 Difficulty: {st.session_state.difficulty}</span></p>",
+    unsafe_allow_html=True,
+)
 
 # ---------------------------------------------------------
 # Scoreboard
