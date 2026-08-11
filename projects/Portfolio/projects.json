@@ -1,0 +1,90 @@
+[
+  {
+    "title": "LLM Comparison Dashboard",
+    "category": "ai-ml",
+    "description": "Interactive Streamlit dashboard comparing 70+ LLMs (GPT, Llama, Deepseek, Claude, Gemini, Mistral, and more) from 8 providers across speed, latency, context window, benchmark scores (MMLU, Chatbot Arena), pricing, and energy efficiency \u2014 with a fully filterable, tab-based interface.",
+    "tags": ["Streamlit", "Data Viz", "LLMs"],
+    "github": "https://github.com/nayab-gull-it/LLM-Comparison-dashboard",
+    "demo": "https://llm-comparison-dashboard.streamlit.app/"
+  },
+  {
+    "title": "FraudScope",
+    "category": "ai-ml",
+    "description": "A fraud and anomaly detection tool for financial ledgers. Upload a CSV of transactions and it scans every row using statistical forensics (not an LLM guessing at numbers) to surface duplicates, threshold-skirting, timing anomalies, and other classic fraud signals \u2014 each with a plain-language explanation of why it was flagged.",
+    "tags": ["AI", "Anomaly Detection", "Finance"],
+    "github": "https://github.com/nayab-gull-it/FraudScope",
+    "demo": "https://fraud-scope.onrender.com/"
+  },
+  {
+    "title": "Casefile \u2014 Resume Agent",
+    "category": "ai-ml",
+    "description": "Helps job seekers evaluate and improve their resumes against real job postings. Upload a resume once, paste any job description, and get an instant match score plus specific, actionable suggestions \u2014 then let the tool rearrange and reword your resume (using only your real experience) to better align with that role.",
+    "tags": ["AI", "NLP", "Career Tools"],
+    "github": "https://github.com/nayab-gull-it/casefile-resume-agent",
+    "demo": "https://casefile-resume-agent.onrender.com/"
+  },
+  {
+    "title": "Student Grade & GPA Prediction",
+    "category": "ai-ml",
+    "description": "End-to-end ML pipeline on a student dataset \u2014 EDA, preprocessing, classification (92.5% accuracy) and regression (R\u00b2 = 0.94) models, with SHAP explainability.",
+    "tags": ["Machine Learning", "Kaggle", "SHAP"],
+    "github": "https://github.com/nayab-gull-it/student-grade-gpa-prediction",
+    "demo": ""
+  },
+  {
+    "title": "House Price Prediction",
+    "category": "ai-ml",
+    "description": "EDA and regression modeling on a house price dataset \u2014 comparing Linear, Ridge, Lasso, Random Forest, and tuned Gradient Boosting (R\u00b2 = 0.91 after tuning).",
+    "tags": ["Machine Learning", "Regression", "Kaggle"],
+    "github": "https://github.com/nayab-gull-it/house-price-prediction-ml",
+    "demo": ""
+  },
+  {
+    "title": "Traffic Flow Prediction",
+    "category": "ai-ml",
+    "description": "Regression modeling to predict traffic flow from road type, day type, weather and time \u2014 Gradient Boosting achieved R\u00b2 = 0.986.",
+    "tags": ["Machine Learning", "Regression", "Kaggle"],
+    "github": "https://github.com/nayab-gull-it/traffic-flow-prediction",
+    "demo": ""
+  },
+  {
+    "title": "Netflix Content Analysis (EDA)",
+    "category": "ai-ml",
+    "description": "Exploratory data analysis on Netflix's content catalog \u2014 content type trends, release patterns, and country-wise distribution.",
+    "tags": ["EDA", "Data Visualization", "Kaggle"],
+    "github": "https://github.com/nayab-gull-it/netflix-content-eda",
+    "demo": ""
+  },
+  {
+    "title": "Tic Tac Toe AI",
+    "category": "ai-ml",
+    "description": "A polished, interactive Tic Tac Toe game built with Python and Streamlit, featuring a smart unbeatable Minimax AI opponent, adjustable difficulty levels, and a sleek dark-themed UI.",
+    "tags": ["Python", "Streamlit", "Game AI"],
+    "github": "https://github.com/nayab-gull-it/tic-tac-toe-streamlit",
+    "demo": "https://tic-tac-toe-app-py.streamlit.app/"
+  },
+  {
+    "title": "Scanline",
+    "category": "ai-ml",
+    "description": "A browser-based QR code generator with custom colors and logo embedding. Runs entirely client-side, no backend required.",
+    "tags": ["JavaScript", "Client-side Tool"],
+    "github": "https://github.com/nayab-gull-it/qr-code-generator",
+    "demo": ""
+  },
+  {
+    "title": "Smart Community Safety App",
+    "category": "app-dev",
+    "description": "A Flutter-based mobile app (academic semester project) promoting community safety through incident reporting, an interactive unsafe-zone map, community alerts, an SOS emergency mode, and an analytics dashboard of incident trends. Built with Firebase Authentication and Firestore, Provider for state management, and GPS/location services.",
+    "tags": ["Flutter", "Firebase", "Mobile App"],
+    "github": "https://github.com/nayab-gull-it/smart-community-safety-app",
+    "demo": ""
+  },
+  {
+    "title": "DreamScape",
+    "category": "app-dev",
+    "description": "An AI-powered dream journal Android app, built natively in Kotlin. Uses the Gemini API to interpret and reflect on journal entries, with Firebase and SQLite for data storage. Not yet published.",
+    "tags": ["Kotlin", "Android", "Gemini API", "Firebase"],
+    "github": "",
+    "demo": ""
+  }
+]

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nayab Gull — AI/ML &amp; App Developer</title>
+<meta name="description" content="Nayab Gull — AI/ML and App Development portfolio. Machine learning, LLM-integrated tools, and native/cross-platform mobile apps.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain-overlay" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="site-header">
+  <nav class="nav-cell">
+    <a href="#top" class="nav-logo">nayab<span class="cursor-blip">_</span>gull</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about"><span class="nav-num">01</span>about</a></li>
+      <li><a href="#skills"><span class="nav-num">02</span>skills</a></li>
+      <li><a href="#projects"><span class="nav-num">03</span>projects</a></li>
+      <li><a href="#experience"><span class="nav-num">04</span>experience</a></li>
+      <li><a href="#research"><span class="nav-num">05</span>research</a></li>
+      <li><a href="#achievements"><span class="nav-num">06</span>achievements</a></li>
+      <li><a href="#contact"><span class="nav-num">07</span>contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+      <div class="notebook-cell hero-cell reveal">
+        <div class="cell-chrome">
+          <div class="cell-dots"><span></span><span></span><span></span></div>
+          <span class="cell-path">~/portfolio/whoami.py</span>
+        </div>
+        <div class="cell-body">
+          <p class="prompt-line"><span class="prompt-label in-label">In [1]:</span> <span class="prompt-code">whoami()</span></p>
+          <div class="out-block">
+            <p class="prompt-label out-label">Out[1]:</p>
+            <h1 class="hero-name">
+              <span id="typedName" class="typed-target"></span><span class="type-caret">|</span>
+            </h1>
+            <p class="hero-role" id="heroRole"></p>
+            <p class="hero-desc">Final-year BS IT student turning practical problems into working, deployed products — not just prototypes.</p>
+
+            <ul class="hero-tags" aria-label="core skills">
+              <li>Python</li>
+              <li>Machine Learning</li>
+              <li>Flutter</li>
+              <li>Kotlin</li>
+              <li>LLM APIs</li>
+            </ul>
+
+            <div class="hero-cta">
+              <a href="#projects" class="btn btn-primary">
+                <span class="btn-glyph">▸</span> View Projects
+              </a>
+              <a href="#contact" class="btn btn-ghost">
+                <span class="btn-glyph">$</span> Get in Touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="hero-scroll-hint">scroll to explore <span class="scroll-arrow">↓</span></p>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <canvas class="network-canvas" id="networkCanvas" aria-hidden="true"></canvas>
+    <div class="container">
+      <p class="section-eyebrow reveal"><span class="eyebrow-tag">01</span> About</p>
+      <h2 class="section-title reveal">A little about the person behind the commits.</h2>
+
+      <div class="about-grid">
+        <div class="notebook-cell about-cell reveal">
+          <div class="cell-chrome">
+            <div class="cell-dots"><span></span><span></span><span></span></div>
+            <span class="cell-path">~/about/bio.md</span>
+          </div>
+          <div class="cell-body">
+            <p class="about-text">
+              I'm <strong>Nayab Gull</strong>, a final-year BS Information Technology student at
+              Rawalpindi Women University (GPA 3.72), based in Pakistan. I focus on AI/ML and
+              software development — building machine learning models, AI-integrated web tools,
+              and native/cross-platform mobile apps that actually ship.
+            </p>
+            <p class="about-text">
+              I'm first author on an IEEE-formatted research paper on cross-domain log anomaly
+              detection, and I won RWU IdeaFest 2026 for a tech-for-good project. What I enjoy
+              most is taking a real-world problem and following it all the way to a deployed,
+              working product.
+            </p>
+          </div>
+        </div>
+
+        <div class="stats-row reveal" id="statsRow">
+          <div class="stat-cell">
+            <span class="stat-number" data-target="12" data-suffix="+">0</span>
+            <span class="stat-label">Projects Shipped</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-number" data-target="2" data-suffix="">0</span>
+            <span class="stat-label">Internships</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-number" data-target="1" data-suffix="">0</span>
+            <span class="stat-label">IdeaFest Win</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="section" id="skills">
+    <div class="container">
+      <p class="section-eyebrow reveal"><span class="eyebrow-tag">02</span> Skills</p>
+      <h2 class="section-title reveal">import toolkit</h2>
+
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <p class="section-eyebrow reveal"><span class="eyebrow-tag">03</span> Projects</p>
+      <h2 class="section-title reveal">Notebook of things I've built.</h2>
+
+      <div class="projects-subsection reveal">
+        <h3 class="subsection-title">
+          <span class="subsection-icon">◆</span> AI &amp; Machine Learning
+        </h3>
+        <div class="project-grid" id="aiProjects"></div>
+      </div>
+
+      <div class="projects-subsection reveal">
+        <h3 class="subsection-title">
+          <span class="subsection-icon">◆</span> App Development
+        </h3>
+        <div class="project-grid" id="appProjects"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section" id="experience">
+    <div class="container">
+      <p class="section-eyebrow reveal"><span class="eyebrow-tag">04</span> Experience</p>
+      <h2 class="section-title reveal">git log --experience</h2>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <p class="timeline-role">Flutter Developer <span class="timeline-badge">Internship</span></p>
+            <p class="timeline-org">Tech4Edges</p>
+            <p class="timeline-date">July 2026 – Present</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <p class="timeline-role">Android Developer <span class="timeline-badge">Internship</span></p>
+            <p class="timeline-org">Sqrock IT Solutions</p>
+            <p class="timeline-date">August 2026 – Present</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <p class="timeline-role">Flutter / Firebase Development <span class="timeline-badge">Internship</span></p>
+            <p class="timeline-org">Developers Corporation</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <p class="timeline-role">IT Support &amp; LMS Management <span class="timeline-badge">Internship</span></p>
+            <p class="timeline-org">PNY Training Institute</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <p class="timeline-role">On-site Technical Support</p>
+            <p class="timeline-org">4th International Conference of Science</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section class="section" id="research">
+    <div class="container">
+      <p class="section-eyebrow reveal"><span class="eyebrow-tag">05</span> Research</p>
+      <h2 class="section-title reveal">Research &amp; Publications</h2>
+
+      <div class="notebook-cell research-cell reveal">
+        <div class="cell-chrome">
+          <div class="cell-dots"><span></span><span></span><span></span></div>
+          <span class="cell-path">~/research/paper_01.tex</span>
+        </div>
+        <div class="cell-body">
+          <p class="research-status">Under Preparation · 2026</p>
+          <h3 class="research-title">
+            Cross-Domain Log Anomaly Detection Using One-Class SVM: A Unified Model Across HDFS, BGL, and Thunderbird Systems
+          </h3>
+          <p class="research-role">First Author</p>
+          <p class="research-desc">
+            A unified one-class SVM approach to detecting anomalies across three distinct
+            system log datasets, formatted for IEEE submission.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="section" id="achievements">
+    <div class="container">
+      <p class="section-eyebrow reveal"><span class="eyebrow-tag">06</span> Achievements</p>
+      <h2 class="section-title reveal">Achievements &amp; Certifications</h2>
+
+      <ul class="achievements-list reveal">
+        <li class="achievement-item">
+          <span class="achievement-icon">🏆</span>
+          <div>
+            <p class="achievement-title">Winner — RWU IdeaFest 2026</p>
+            <p class="achievement-meta">Tech-for-good project, built with a teammate</p>
+          </div>
+        </li>
+        <li class="achievement-item">
+          <span class="achievement-icon">📜</span>
+          <div>
+            <p class="achievement-title">Microsoft Certified: Azure AI Fundamentals (AI-900)</p>
+            <p class="achievement-meta">International certification · June 2026 – Present</p>
+          </div>
+        </li>
+        <li class="achievement-item">
+          <span class="achievement-icon">📜</span>
+          <div>
+            <p class="achievement-title">Google IT Support Professional Certificate</p>
+            <p class="achievement-meta">Coursera</p>
+          </div>
+        </li>
+        <li class="achievement-item">
+          <span class="achievement-icon">📊</span>
+          <div>
+            <p class="achievement-title">Data Visualization Certification</p>
+          </div>
+        </li>
+        <li class="achievement-item">
+          <span class="achievement-icon">📊</span>
+          <div>
+            <p class="achievement-title">Kaggle Certification</p>
+          </div>
+        </li>
+        <li class="achievement-item">
+          <span class="achievement-icon">🎤</span>
+          <div>
+            <p class="achievement-title">IT Support — 4th International Conference of Science</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section section-contact" id="contact">
+    <div class="container">
+      <div class="notebook-cell contact-cell reveal">
+        <div class="cell-chrome">
+          <div class="cell-dots"><span></span><span></span><span></span></div>
+          <span class="cell-path">~/contact.sh</span>
+        </div>
+        <div class="cell-body">
+          <p class="prompt-line"><span class="prompt-label in-label">In [2]:</span> <span class="prompt-code">get_in_touch()</span></p>
+          <p class="prompt-label out-label">Out[2]:</p>
+          <h2 class="contact-title">Let's build something worth deploying.</h2>
+          <p class="contact-sub">Open to internships, collaborations, and interesting problems.</p>
+
+          <div class="contact-links">
+            <a href="mailto:nayabbbgull@gmail.com" class="contact-link">
+              <span class="contact-icon">✉</span> nayabbbgull@gmail.com
+            </a>
+            <a href="https://github.com/nayab-gull-it" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <span class="contact-icon">⌥</span> GitHub
+            </a>
+            <a href="https://www.kaggle.com/nayabgulll964" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <span class="contact-icon">▲</span> Kaggle
+            </a>
+            <a href="https://www.linkedin.com/in/nayab-gull-4a4795293/" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <span class="contact-icon">in</span> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-text">designed &amp; built by Nayab Gull</p>
+    <p class="footer-text footer-meta"># EOF</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
